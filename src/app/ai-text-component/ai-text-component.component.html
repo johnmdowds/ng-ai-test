@@ -1,0 +1,16 @@
+<div class="card" *ngIf="response && response.choices.length > 0">
+    <div class="card-header">
+        <h3>Response</h3>
+    </div>
+    <div class="card-body">
+        <p>{{ response.choices[0].text }}</p>
+    </div>
+</div>
+<div class="card" *ngIf="!response || response.choices.length === 0">
+    <div class="card-header">
+        <h3>Response</h3>
+    </div>
+    <div class="card-body">
+        <p>No response yet</p>
+    </div>
+</div>

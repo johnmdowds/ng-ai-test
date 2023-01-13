@@ -20,13 +20,5 @@
 </div>
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <div class="card" *ngIf="response">
-        <div class="card-header">
-          <h3>Response</h3>
-        </div>
-        <div class="card-body">
-          <p>{{ response }}</p>
-        </div>
-      </div>
+  <app-ai-text-component [response]="response"></app-ai-text-component>
+</div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Configuration, OpenAIApi } from 'openai';
+import { Configuration, CreateCompletionResponse, OpenAIApi } from 'openai';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -12,34 +12,31 @@ export class AppComponent {
   openAiToken = environment.openAiToken;
   openAiApi: OpenAIApi;
   text: string = '';
-  response: any;
+  response: CreateCompletionResponse;
 
   constructor() {
     let configuration = new Configuration({
       apiKey: environment.openAiToken
     });
     this.openAiApi = new OpenAIApi(configuration);
+    this.response = {
+      id: '',
+      object: '',
+      created: 1,
+      model: '',
+      choices: [{ text: '' }]
+    };
   }
 
-  async doSomething(text: string) {
+  async submitForm() {
     try {
-      const response = await this.openAiApi.createCompletion({
+      this.response = (await this.openAiApi.createCompletion({
         model: "text-davinci-003",
-        prompt: this.generatePrompt(text),
+        prompt: `The text I want to complete is: ${this.text}`,
         temperature: 0.6,
-      });
-      this.response = response;
+      })).data;
     } catch (error) {
       console.error(error);
     }
   }
-
-  generatePrompt(text: string) {
-    return `The text I want to complete is: ${text}`;
-  }
-
-  submitForm() {
-    this.doSomething(this.text);
-  }
-
 }

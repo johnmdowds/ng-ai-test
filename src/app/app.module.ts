@@ -4,10 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AiTextComponentComponent } from './ai-text-component/ai-text-component.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AiTextComponentComponent
   ],
   imports: [
     BrowserModule,
